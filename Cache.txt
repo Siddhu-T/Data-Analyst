@@ -1,0 +1,204 @@
+## To generate and visualize a triangle wave signal using Python and
+demonstrate its characteristics through graphical representation
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+periods = 3 # Number of periods to plot
+frequency = 1 
+samples_per_period = 500
+total_samples = periods * samples_per_period
+t = np.linspace(0, periods, total_samples)
+triangle_wave = signal.sawtooth(2 * np.pi * frequency * t, 0.5)
+plt.figure(figsize=(10, 4))
+plt.plot(t, triangle_wave)
+plt.title(f'Triangle Wave - {periods} Periods')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+plt.grid(True)
+plt.show()
+
+## Write a python program that involves a different type of signal and analysis.
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import correlate
+fs = 500 
+t = np.arange(0, 2, 1/fs) 
+signal = np.sin(2 * np.pi * 5 * t) 
+segment_length = int(0.5 * fs) 
+segment_start = 300 
+segment = signal[segment_start:segment_start + segment_length]
+correlation = correlate(signal, segment, mode='same')
+plt.figure(figsize=(12, 8))
+plt.subplot(3, 1, 1)
+plt.plot(t, signal, label='Original Signal')
+plt.axvline(t[segment_start], color='r', linestyle='--', label='SegmentStart')
+plt.axvline(t[segment_start + segment_length], color='r', linestyle='--',label='Segment End')
+plt.title('Original Signal')
+plt.xlabel('Time [s]')
+plt.ylabel('Amplitude')
+plt.legend()
+plt.grid(True)
+# Plot the segment
+plt.subplot(3, 1, 2)
+plt.plot(t[segment_start:segment_start + segment_length], segment,label='Segment')
+plt.title('Segment of the Signal')
+plt.xlabel('Time [s]')
+plt.ylabel('Amplitude')
+plt.legend()
+plt.grid(True)
+
+
+## Write a python program that involves a different type of signal and
+analysis.
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import correlate
+fs = 500 # Sampling frequency
+t = np.arange(0, 2, 1/fs) 
+signal = np.sin(2 * np.pi * 5 * t) + 0.5 * np.sin(2 * np.pi * 20 * t) + 0.2 * np.random.normal(size=t.shape)
+segment_length = int(0.5 * fs) 
+segment_start = 400 
+segment = signal[segment_start:segment_start + segment_length]
+correlation = correlate(signal, segment, mode='same')
+plt.figure(figsize=(12, 8))
+plt.subplot(3, 1, 1)
+plt.plot(t, signal, label='Original Signal')
+plt.axvline(t[segment_start], color='r', linestyle='--', label='SegmentStart')
+plt.axvline(t[segment_start + segment_length], color='r', linestyle='--',label='Segment End')
+plt.title('Original Signal with Multiple Frequencies and Noise')
+plt.xlabel('Time [s]')
+plt.ylabel('Amplitude')
+plt.legend()
+plt.grid(True)
+plt.subplot(3, 1, 2)
+plt.plot(t[segment_start:segment_start + segment_length], segment,label='Segment')
+plt.title('Segment of the Signal')
+plt.xlabel('Time [s]')
+plt.ylabel('Amplitude')
+plt.legend()
+plt.grid(True)
+plt.subplot(3, 1, 3)
+plt.plot(t, correlation, label='Correlation')
+plt.title('Correlation between Original Signal and Segment')
+plt.xlabel('Time [s]')
+plt.ylabel('Correlation')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+plt.subplot(3, 1, 3)
+plt.plot(t, correlation, label='Correlation')
+plt.title('Correlation between Original Signal and Segment')
+plt.xlabel('Time [s]')
+plt.ylabel('Correlation')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+## Write a python program where we work with a signal that has a pattern
+and then a repeating or periodic signal.
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import correlate, square
+fs = 500 
+t = np.arange(0, 2, 1/fs) 
+signal = square(2 * np.pi * 2 * t) + 0.2 * np.random.normal(size=t.shape)
+segment_length = int(0.5 * fs) 
+segment_start = 300 
+segment = signal[segment_start:segment_start + segment_length]
+correlation = correlate(signal, segment, mode='same')
+plt.figure(figsize=(12, 8))
+plt.subplot(3, 1, 1)
+plt.plot(t, signal, label='Original Signal (Square Wave with Noise)')
+plt.axvline(t[segment_start], color='r', linestyle='--', label='SegmentStart')
+plt.axvline(t[segment_start + segment_length], color='r', linestyle='--',label='Segment End')
+plt.title('Original Signal with Square Wave Pattern')
+plt.xlabel('Time [s]')
+plt.ylabel('Amplitude')
+plt.legend()
+plt.grid(True)
+plt.subplot(3, 1, 2)
+plt.plot(t[segment_start:segment_start + segment_length], segment,label='Segment')
+plt.title('Segment of the Signal')
+plt.xlabel('Time [s]')
+plt.ylabel('Amplitude')
+plt.legend()
+plt.grid(True)
+plt.subplot(3, 1, 3)
+plt.plot(t, correlation, label='Correlation')
+plt.title('Correlation between Original Signal and Segment')
+plt.xlabel('Time [s]')
+plt.ylabel('Correlation')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+## Write a python program with a signal composed of a chirp signal (a
+signal where the frequency increases over time) and some added noise
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import correlate, chirp
+fs = 1000 
+t = np.arange(0, 2, 1/fs) 
+signal = chirp(t, f0=10, f1=100, t1=2, method='quadratic') + 0.2 *np.random.normal(size=t.shape)
+segment_length = int(0.5 * fs) 
+segment_start = 700 
+segment = signal[segment_start:segment_start + segment_length]
+correlation = correlate(signal, segment, mode='same')
+plt.figure(figsize=(12, 8))
+plt.subplot(3, 1, 1)
+plt.plot(t, signal, label='Original Chirp Signal with Noise')
+plt.axvline(t[segment_start], color='r', linestyle='--', label='SegmentStart')
+plt.axvline(t[segment_start + segment_length], color='r', linestyle='--',label='Segment End')
+plt.title('Original Chirp Signal with Noise')
+plt.xlabel('Time [s]')
+plt.ylabel('Amplitude')
+plt.legend()
+plt.grid(True)
+plt.subplot(3, 1, 2)
+plt.plot(t[segment_start:segment_start + segment_length], segment,label='Segment')
+plt.title('Segment of the Chirp Signal')
+plt.xlabel('Time [s]')
+plt.ylabel('Amplitude')
+plt.legend()
+plt.grid(True)
+plt.subplot(3, 1, 3)
+plt.plot(t, correlation, label='Correlation')
+plt.title('Correlation between Original Signal and Segment')
+plt.xlabel('Time [s]')
+plt.ylabel('Correlation')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+## Convolution Operation on Sound/Image Dat
+
+import numpy as np
+import scipy.io.wavfile as wav
+import matplotlib.pyplot as plt
+from scipy.signal import convolve
+sampling_rate, signal = wav.read('rainy_noise.wav')
+if len(signal.shape) == 2: 
+signal = np.mean(signal, axis=1)
+signal = signal / np.max(np.abs(signal))
+kernel = np.ones(1000) / 1000 
+convolved_signal = convolve(signal, kernel, mode='same')
+time = np.linspace(0, len(signal) / sampling_rate, num=len(signal))
+plt.figure(figsize=(10, 6))
+plt.subplot(2, 1, 1)
+plt.plot(time, signal)
+plt.title('Original Sound Signal')
+plt.subplot(2, 1, 2)
+plt.plot(time, convolved_signal)
+plt.title('Convolved Signal (Smoothed)')
+plt.tight_layout()
+plt.show()
