@@ -1,0 +1,49 @@
+classless IP address - (Prac1)
+
+Router 1
+config terminal
+int s1/0
+ip add 10.0.0.1 255.255.255.252
+no shutdown
+exit 
+do wr
+int fastethernet0/0
+ip add 20.0.0.1 255.255.255.252
+no shutdown
+exit 
+do wr
+exit
+
+show ip int bri
+
+PC 1
+
+show ip
+
+Prac2 - Static Routing
+
+router 1
+ip route 10.0.0.0 255.255.252.0 20.0.0.1
+ip route 50.0.0.0 255.255.252.0 40.0.0.2
+do wr
+do show ip route
+
+router 2
+ip route 30.0.0.0 255.255.252.0 20.0.0.2
+ip route 40.0.0.0 255.255.252.0 20.0.0.2
+ip route 50.0.0.0 255.255.252.0 20.0.0.2
+do wr
+do show ip route
+
+router 3
+ip route 30.0.0.0 255.255.252.0 40.0.0.1
+ip route 20.0.0.0 255.255.252.0 40.0.0.1
+ip route 10.0.0.0 255.255.252.0 40.0.0.1
+do wr
+do show ip route
+
+PC2
+# pinging pc2 to pc3
+ping  50.0.0.2
+
+
