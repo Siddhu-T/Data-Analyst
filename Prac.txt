@@ -1,0 +1,603 @@
+1.Install and understand Docker container, Node.js,
+Java and Hyperledger Fabric, Ethereum and
+perform necessary software installation on local
+machine/create instance on Cloud to run.
+
+2. Create and deploy a block chain network using
+Hyperledger Fabric SDK for Java.
+
+3. Interact with a block chain network. Execute
+transactions and requests against a block chain
+network by creating an app to test the network and
+its rules.
+
+4. Deploy an asset-transfer app using block chain.
+Learn app development within a Hyperledger
+Fabric network.
+
+5. Car auction network: A Hello World example with
+Hyperledger Fabric Node SDK
+and IBM Block chain Starter Plan. Use Hyperledger
+Fabric to invoke chaincode while
+storing results and data in the starter plan
+
+6. Develop a voting application using Hyperledger
+and Ethereum. Build a decentralized app that
+combines Ethereum's Web3 and Solidity smart
+contracts with Hyperledger's hosting Fabric and
+Chaincode EVM(using solidity)
+
+7. Create the Metamasks Account.
+
+8. Create the Truffle project.
+
+
+Prac1 : 
+Install and understand Docker container, Node.js,
+Java and Hyperledger Fabric, Ethereum and
+perform necessary software installation on local
+machine/create instance on Cloud to run.
+
+Step 1: Visit https://labs.play-with-docker.com/ and click on login and click on
+docker
+
+Step 2: Login with google account and create username and sign up
+
+Step 3: Click on add new instance and New instance will be created
+
+Step 4: Type command docker - -version
+
+Step 5: Type command docker pull rocker/verse
+
+Step 6: Type command docker images
+
+Step 7: Go to https://hub.docker.com/ -> go to repositories-> and click on
+create repository
+
+Step 8: Give repo name and create
+
+Step 9: Go to account settings->reset password->set new password->again sign
+in with username and password
+
+Step 10: Go to play with dockers command prompt type command docker login
+- - username=siddhu2327 and enter password
+
+Step 11: Type command docker images and note image id
+
+Step 12: Type this below given command
+
+Step 13: Type this command docker push siddhu2327/siddhu23:T1
+
+Step 14: docker push siddhu2327/siddhu23:T1
+
+Step 15: Go to hub and refresh
+
+Step 16: Create javascript file and name it as first.js
+var http = require('http');
+http.createServer(function(req,res){
+ res.writeHead(200,{'Content-Type':'text/html'});
+ res.end("Hello 23_Siddhesh From Msc computer science ");
+}).listen(8081);
+
+Step 17: Open Browser and search localhost:8081
+
+Step 18: Edit first.js file and also create new myfirstmodule.js
+first.js
+var http = require('http');
+var dt = require('./myfirstmodule');
+http.createServer(function (req, res) {
+ res.writeHead(200, { 'Content-Type': 'text/html' });
+ res.write("The date and time are currently: " + dt.myDateTime());
+ res.end();
+}).listen(8081);
+console.log("Server running at http://localhost:8081/");
+myfirstmodule.js
+exports.myDateTime = function () {
+ return Date();
+};
+
+Step 19: Open Browser and search localhost:8081
+
+
+
+
+Prac2:
+Aim: Create and deploy a block chain network using Hyperledger Fabric SDK
+for Java
+
+Step 1: - Go to Control Panel
+
+Step 2: - Go into Programs then select option Turn windows feature on and off
+and tick on the check box of Windows Subsystem for Linux
+
+Step 3: - Install WSL 2 in PowerShell and execute these commands
+wsl --set-default-version 2
+wsl -l -v
+
+Step 4: - Restart the WSL Service (Run CMD as administrator)
+net stop LxssManager
+net start LxssManager
+
+Step 5: - Install Required Libraries such as Python, GoLang Go, Docker,
+Docker compose, nodejs, curl in Ubuntu Terminal
+
+Step 6: - Follow this below command to make directory and clone the repo
+git config --global core.autocrlf false
+git config --global core.longpaths true
+Mkdir siddhesh_msccs
+cd siddhesh_msccs
+curl -sSL http://bit.ly/2ysbOFE | bash -s
+
+Step 7: - Navigate to fabric sample and then in test-network and then execute
+these command
+cd fabric-samples/test-network
+ll
+./network.sh up
+cat network.sh
+./network.sh up
+sudo apt-get install jq
+./network.sh CreateChannel -c siddhesh
+
+Step 8: - You will be able to see image files in local in Docker desktop
+
+
+Prac3:
+Aim: Interact with a block chain network. Execute transactions and requests
+against a block chain network by creating an app to test the network and its
+rules
+
+Step 1: sudo add-apt-repository -y ppa:ethereum/Ethereum
+
+Step 2: sudo apt-get update
+
+Step 3: sudo apt-get install Ethereum
+
+Step 4: sudo apt install geth
+
+Step 5: geth -h
+
+Step 6:
+mkdir privatetest
+cd privatetest
+mkdir node0
+cd node0
+cd..
+mkdir node1
+cd..
+dir
+
+Step 7: geth --datadir ./node0 account new
+
+Step 8: geth --datadir ./node1 account new
+
+node 0: - 0xE40B17a86Fcd07f8a87B6085DfC41eA19B5D26CF
+node 1: - 0xfda2f2965958Ed9348Ce072214a6Fb3Bd8defB95
+
+Step 9: sudo apt install puppet
+
+Step 10: Create new file called genesis.json
+{
+ "config": {
+ "chainId": 1234,
+ "homesteadBlock": 0,
+ "eip150Block": 0,
+ "eip155Block": 0,
+ "eip158Block": 0,
+ "byzantiumBlock": 0,
+ "constantinopleBlock": 0,
+ "petersburgBlock": 0,
+ "ethash": {},
+ "terminalTotalDifficulty": 0,
+ "terminalTotalDifficultyPassed": true
+ },
+ "difficulty": "4",
+ "gasLimit": "8000000",
+ "alloc": {}
+}
+
+Do nano genesis.json and paste the text and click ctrl+X to save
+
+Step 11: geth –-datadir ./node0 init genesis.json
+
+Step 12: geth –-datadir ./node1 init genesis.json
+
+Step 13: geth --datadir node0 --networkid 1234 \
+--http --http.addr 127.0.0.1 --http.port 8545 --http.api personal,db,eth,net \
+--ws --ws.addr 127.0.0.1 --ws.port 8546 --port 30303 \
+--authrpc.port 8551 \
+--allow-insecure-unlock --nodiscover
+
+Step 14: Open different ubuntu console
+cd privatetest
+geth --datadir node1 --networkid 1234 \
+--http --http.addr 127.0.0.2 --http.port 8547 --http.api personal,db,eth,net \
+--ws --ws.addr 127.0.0.2 --ws.port 8548 --port 30304 \
+--authrpc.port 8553 \
+--allow-insecure-unlock --nodiscover
+
+Step 15: Open new terminal and then execute this command
+geth attach privatetest/node0/geth.ipc
+
+Step 16: open another new terminal and execute this command
+geth attach privatetest/node1/geth.ipc
+
+Step 17: Inside Node 0 console
+admin.nodeInfo
+
+
+Step 18: inside Node 1 Console
+admin.nodeInfo
+
+Step 19: For connecting these two nodes copy enode address of node1 and add
+in following command execute this on node 0 and vice versa take enode address
+of node0 and execute command in node1
+Do admin.nodeInfo.enode to get the code to add it in next command
+In Node0 Terminal
+admin.addPeer("enode://15e981feba53a64a8324cea94122f3bd2997f17d07c630
+8fb4c1f9df1d24158cd5d8a672f592359441d8a632592b0bc178282a6776a8e85b
+c5298478aa9b99e6@127.0.0.1:30303?discport=0")
+
+In Node1 Terminal
+admin.addPeer("enode://15e981feba53a64a8324cea94122f3bd2997f17d07c630
+8fb4c1f9df1d24158cd5d8a672f592359441d8a632592b0bc178282a6776a8e85b
+c5298478aa9b99e6@127.0.0.1:30303?discport=0")
+
+Step 20: For checking
+For Node0
+admin.peers
+
+For Node1
+admin.peers
+
+Step 20: Open new Ubuntu Terminal
+cd privatetest/
+geth --datadir ./node0 account new
+
+geth --datadir ./node1 account new
+
+In Node0 Terminal
+
+Practical No. 4
+Aim: - Deploy an asset-transfer app using block chain. Learn app development
+within a Hyperledger Fabric network.
+Step 1: - We can use the Fabric test network to deploy and interact with the
+asset-transfer-abac smart contract. Run the following command to change into
+the test network directory and bring down any running nodes:
+
+Step 2: - Run the following command to deploy the test network using
+Certificate Authorities
+
+Step 3: - You can then use the test network script to deploy the asset-transferabac smart 
+contract to a channel on the network
+Note- Install golang-go before executing this command
+sudo apt install -y golang-go
+
+Go to this folder - ~/siddhesh_msccs/fabric-samples/asset-transferabac/chaincode-go and
+change the go version to 1.23.0 to 1.23 using this
+command
+Again, navigate back to our directory of test-network
+
+Step 4: - We can use the one of the test network Certificate Authorities to
+register and enroll identities with the attribute of abac.creator=true. First, we
+need to set the following environment variables in order to use the Fabric CA
+client.
+
+Step 5: - We will create the identities using the Org1 CA. Set the Fabric CA
+client home to the MSP of the Org1 CA admin
+
+
+Step 6: - We will use both methods and create two identities in the process. The
+first method is to specify that the attribute be added to the certificate by default
+when the identity is registered. The following command will register an identity
+named creator1 with the attribute of abac.creator=true.
+
+Step 7: - The ecert suffix adds the attribute to the certificate automatically when
+the identity is enrolled. As a result, the following enroll command will contain
+the attribute that was provided in the registration command
+
+Step 8: - Now that we have enrolled the identity, run the command below to
+copy the Node OU configuration file into the creator1 MSP folder.
+
+Step 9: - The second method is to request that the attribute be added upon
+enrollment. The following command will register an identity named creator2
+with the same abac.creator attribute.
+
+
+Step 10: - The following enroll command will add the attribute to the certificate
+
+Step 11: - Run the command below to copy the Node OU configuration file into
+the creator2 MSP folder.
+
+Step 12: - You can use either identity with the abac.creator=true attribute to
+create an asset using the asset-transfer-abac smart contract. We will set the
+following environment variables to use the first identity that was generated,
+creator1
+
+Step 13: - Run the following command to create Asset1
+
+Step 14: - You can use the command below to query the asset on the ledger
+
+Step 15: - As the owner of Asset1, the creator1 identity has the ability to transfer
+the asset to another owner. In order to transfer the asset, the owner needs to
+provide the name and issuer of the new owner to the TransferAsset function.
+The asset-transfer-abac smart contract has a GetSubmittingClientIdentity
+function that allows users to retrieve their certificate information and provide it
+to the asset owner out of band (we omit this step). Issue the command below to
+transfer Asset1 to the user1 identity from Org1 that was created when the test
+network was deployed
+
+Step 16: - Query the ledger to verify that the asset has a new owner
+
+Step 17: - Run the following command to operate as the asset owner by setting
+the MSP path to User1
+
+Step 18: - We can now update the asset. Run the following command to change
+the asset color from blue to green. All other aspects of the asset will remain
+unchanged.
+
+Step 19: - Run the query command again to verify that the asset has changed
+color
+
+Step 20: - The owner also has the ability to delete the asset. Run the following
+command to remove Asset1 from the ledger
+
+Step 21: - If you query the ledger once more, you will see that Asset1 no longer
+exists
+
+Step 22: - When you are finished, you can run the following command to bring
+down the test network
+
+Practical No. 5
+Aim: Car auction network: A Hello World example with Hyperledger Fabric
+Node SDK and IBM Block chain Starter Plan. Use Hyperledger Fabric to
+invoke chaincode while storing results and data in the starter plan.
+
+Step 1: Open Ubuntu terminal and clone the repository
+git clone -b release-2.2 https://github.com/hyperledger/fabric-samples.git
+cd fabric-samples
+git checkout main
+
+Step 2: Install Binaries (peer, orderer, cryptogen, configtxgen)
+
+Step 3: Update PATH
+Add binaries to your session:
+
+Step 4: Start Test Network
+cd test-network
+./network.sh down
+docker ps -a
+docker rm -f $(docker ps -aq)
+docker volume prune -f
+./network.sh up createChannel -c mychannel -ca
+
+Step 5: Deploy Fabcar Chaincode
+./network.sh deployCC -ccn fabcar -ccl javascript -ccp
+../chaincode/fabcar/javascript
+
+Step 6: Navigate back to fabcar/javascript folder and then install npm\
+Execute this command step by step
+sudo apt-get purge -y nodejs npm libnode-dev
+sudo apt-get autoremove -y
+sudo apt-get autoclean
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+Step 7: fix Fabcar app
+rm -rf node_modules package-lock.json
+npm install
+
+Step 8: Enroll admin:
+node enrollAdmin.js
+
+Step 9: Register a new user:
+node registerUser.js
+
+Step 10: Query the Ledger
+node query.js
+
+Step 11: Invoke Transactions
+Change owner of a car by editing invoke.js:
+node invoke.js
+
+Step 12: Now change the owner
+Edit invoke.js again:
+nano invoke.js
+replace this line
+await contract.submitTransaction('createCar', 'CAR12', 'Honda', 'Accord',
+'Black', 'Tom');
+with
+await contract.submitTransaction('changeCarOwner', 'CAR12', 'Dave');
+
+Step 13: Now you can see the car owner has been changed to Dave
+node query.js
+
+Practical No. 6
+Aim: Develop a voting application using Hyperledger and Ethereum. Build a
+decentralized app that combines Ethereum’s Web3 and Solidity smart contracts
+with Hyperledger’s hosting Fabric and Chain code EVM(using solidity)
+Step 1: Open Ethereum IDE
+https://remix.ethereum.org/
+
+Step 2: Create new file name as voting_app.sol
+Step 3: Go inside contracts then open file storage.sol and copy first 2 lines of
+code
+
+Step 4: Paste the first 2 line and this code in your voting_app.sol
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.8.2 <0.9.0;
+contract VotingForTopper {
+address private owner;
+string public purpose;
+struct Voter {
+bool authorized;
+bool voted;
+}
+uint public totalVotes;
+uint public teamA;
+uint public teamB;
+uint public teamC;
+mapping(address => Voter) private info;
+constructor(string memory _purpose) {
+purpose = _purpose;
+owner = msg.sender;
+}
+modifier onlyOwner() {
+require(msg.sender == owner, "Not authorized");
+_;
+}
+function authorize(address _person) public onlyOwner {
+info[_person].authorized = true;
+}
+function voteForTeamA() public {
+require(!info[msg.sender].voted, "You have already voted");
+require(info[msg.sender].authorized, "You are not authorized to vote");
+info[msg.sender].voted = true;
+teamA++;
+totalVotes++;
+}
+function voteForTeamB() public {
+require(!info[msg.sender].voted, "You have already voted");
+require(info[msg.sender].authorized, "You are not authorized to vote");
+info[msg.sender].voted = true;
+teamB++;
+totalVotes++;
+}
+function voteForTeamC() public returns (string memory) {
+require(!info[msg.sender].voted, "You have already voted");
+require(info[msg.sender].authorized, "You are not authorized to vote");
+info[msg.sender].voted = true;
+teamC++;
+totalVotes++;
+return "Thanks for Voting";
+}
+function getTotalVotes() public view returns (uint) {
+return totalVotes;
+}
+function getResult() public view returns (string memory) {
+if (teamA > teamB && teamA > teamC) {
+return "Team A is winning";
+} else if (teamB > teamA && teamB > teamC) {
+return "Team B is winning";
+} else if (teamC > teamA && teamC > teamB) {
+return "Team C is winning";
+} else {
+return "It's a tie";
+}
+}
+}
+
+Step 5: Compile the code
+
+Step 6: Click on compile option and compile the code
+
+Step 7: Go to Deploy and run transaction in the left side of panel
+
+Step 8: Scroll down on left side and go to the option Deployed contracts and
+enter the account number. Click on the authorize then click on voteforteamA
+and then getresult
+
+Step 9: If you try to vote again you will get error
+
+Practical No. 8
+Aim: Create the Truffle Project
+
+Step 1: create a folder for truffle then import it in VS code
+Step 2: Type node in terminal
+
+Step 3: npm-v
+
+Step 4: npm install truffle –g
+
+Step 5: truffle init then you will able to see the repository / folder of truffle
+
+Step 6: truffle unbox metacoin
+
+Step 7: truffle compile
+
+Step 8: truffle develop
+
+Step 9: On the Truffle Develop prompt, Truffle commands can be run by
+omitting the truffle prefix. For example, to run truffle compile on the prompt,
+type compile. The command to deploy your compiled contracts to the
+blockchain is truffle migrate. By default, truffle migrate will also run truffle
+compile, so you can just do the following:
+
+Step 10: now we have to install ganache to set the network npm install -g
+ganache-cli
+
+Step 11: start Ganache, ensure the workspace is open, and confirm that the local
+blockchain is active.
+Ganache-cli
+
+Step 12: create file under contract and give name to file “ConvertLib.sol” and
+paste this code
+
+Step 13: In cmd truffle compile
+
+Step 14: Create file in contract “ MetaCoin.sol” and paste this code
+// SPDX-License-Identifier: MIT pragma
+solidity ^0.8.0;
+import "./ConvertLib.sol";
+contract MetaCoin {
+using ConvertLib for uint;
+mapping (address => uint) balances;
+event Transfer(address indexed _from, address indexed _to, uint256 _value); constructor() {
+balances[msg.sender] = 10000;
+}
+function sendCoin(address receiver, uint amount) public returns(bool sufficient) { if
+(balances[msg.sender] < amount) return false;
+balances[msg.sender] -= amount; balances[receiver] +=
+amount;
+emit Transfer(msg.sender, receiver, amount); return true;
+}
+function getBalanceInEth(address addr) public view returns(uint){
+return balances[addr].convert(2); // Call the convert function as a library
+}
+function getBalance(address addr) public view returns(uint) { return
+balances[addr];
+}}
+
+Step 15: In cmd in truffle develop type truffle compile
+
+Step 16: In cmd under truffle develop type truffle migrate - - reset
+
+Step 17: Open truffle-config.js in a text editor. Replace the content with the
+following, ensuring your port number is correct
+module.exports = {
+// Other configuration settings...
+networks: {
+development:
+{ host:
+"127.0.0.1",
+port:
+7545,
+network_i
+d: "*"
+}
+},
+comp
+ilers
+: {
+solc
+: {
+version: "0.8.21", // Fetch exact version from solc-bin (default: truffle's version)
+}
+}
+};
+Step 18: in terminal type migrate
+
+Step 19: simpler interactions with the contract using async/ waits
+establishing both the deployed MetaCoin contract instance and the accounts
+created by either Truffle's built-in blockchain or Ganache
+
+Step 20: Check the metacoin balance of the account that deployed the contract
+
+Step 21: See how much ether that balance is worth (and note that the contract
+defines a metacoin to be worth 2 ether)
+
+Step 22: Transfer some metacoin from one account to another:
+
+Step 23: Check the balance of the account that received the metacoin:
+
+Step 24: Check the balance of the account that sent the metacoin
+
