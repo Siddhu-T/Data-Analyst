@@ -1,0 +1,19 @@
+
+<data>
+  <record>
+    <City>Delhi</City>
+    <Temperature>35</Temperature>
+  </record>
+  <record>
+    <City>Mumbai</City>
+    <Temperature>40</Temperature>
+  </record>
+  <record>
+    <City>Shimla</City>
+    <Temperature></Temperature> <!-- Missing value -->
+  </record>
+  <record>
+    <City>Dubai</City>
+    <Temperature>60</Temperature> <!-- Outlier -->
+  </record>
+</data>

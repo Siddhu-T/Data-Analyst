@@ -1,0 +1,22 @@
+[
+    {
+        "Name":"Amit",
+        "Marks":85.0,
+        "Grade":"A"
+    },
+    {
+        "Name":"Riya",
+        "Marks":null,
+        "Grade":"B"
+    },
+    {
+        "Name":"Karan",
+        "Marks":95.0,
+        "Grade":"A"
+    },
+    {
+        "Name":"Simran",
+        "Marks":30.0,
+        "Grade":"F"
+    }
+]
