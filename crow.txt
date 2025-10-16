@@ -1,0 +1,86 @@
+Prac 1
+
+R1# show ip int bri
+PC1> show ip
+
+R2# show ip int bri
+PC2> show ip
+
+R3# show ip int bri
+PC3> show ip
+
+Prac 2 Static Routing
+
+1. Configuration of R1 
+
+R1(config)#int fa0/1
+R1(config-if)#ip add 20.0.0.2 255.255.255.252
+R1(config-if)#no shutdown
+R1(config-if)#
+R1(config-if)#do wr
+R1(config-if)#exit
+
+R1(config)#int fa0/0
+R1(config-if)#ip add 30.0.0.1 255.255.255.252
+R1(config-if)#no shutdown
+R1(config-if)#
+R1(config-if)#do wr
+R1(config-if)#exit
+
+R1(config)#int fa1/0
+R1(config-if)#ip add 40.0.0.1 255.255.255.252
+R1(config-if)#no shutdown
+R1(config-if)#
+R1(config-if)#do wr
+R1(config-if)#exit
+R1(config)#ip route 10.0.0.0 255.255.252.0 20.0.0.1
+R1(config)#ip route 50.0.0.0 255.255.252.0 40.0.0.2
+R1(config)#do wr
+R1(config)#do show ip route
+R1(config)#
+
+2. Configuration of R2
+
+R2#conf t
+R2(config)#int fa0/1
+R2(config-if)#ip add 10.0.0.1 255.255.255.252
+R2(config-if)#no shutdown
+R2(config-if)#             
+R2(config-if)#do wr
+R2(config-if)#exit
+
+R2(config)#int fa0/0
+R2(config-if)#ip add 20.0.0.1 255.255.255.252
+R2(config-if)#no shutdown
+R2(config-if)#do wr
+R2(config-if)#exit
+R2(config)#ip route 30.0.0.0 255.255.252.0 20.0.0.2
+R2(config)#ip route 40.0.0.0 255.255.252.0 20.0.0.2
+R2(config)#ip route 50.0.0.0 255.255.252.0 20.0.0.2
+R2(config)#do wr
+R2(config)#do show ip route
+R2(config)#exit
+
+3. Configuration of R3
+
+R3#conf t
+R3(config)#int fa0/0
+R3(config-if)#ip add 40.0.0.2 255.255.255.252
+R3(config-if)#no shutdown
+R3(config-if)#
+R3(config-if)exit
+
+R3(config)#int fa0/1
+R3(config-if)#ip add 50.0.0.1 255.255.255.252
+R3(config-if)#no shutdown
+R3(config-if)#
+R3(config-if)#do wr
+R3(config-if)#exit
+R3(config)#ip route 30.0.0.0 255.255.252.0 40.0.0.1
+R3(config)#ip route 20.0.0.0 255.255.252.0 40.0.0.1
+R3(config)#ip route 10.0.0.0 255.255.252.0 40.0.0.1
+R3(config)#do wr
+R3(config)#do show ip route
+
+4. Pinging pc2 to pc3
+PC2> ping 50.0.0.2
